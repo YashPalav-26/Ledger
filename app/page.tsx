@@ -38,13 +38,25 @@ export default function HomePage() {
             <div className="container mx-auto px-4 py-12 lg:py-20">
         {/* Hero Section */}
         <div className="text-center mb-16 lg:mb-24">
-          <div className="inline-flex items-center gap-3 bg-card border-current border-4 px-6 py-3 rounded-none font-mono font-bold text-sm tracking-widest uppercase animate-in fade-in slide-in-from-top duration-500 transform rotate-[-2deg]">
-            <Sparkles className="h-5 w-5" />
-            Your digital workspace awaits
+          <div className="inline-block relative">
+            <div className="absolute inset-0 bg-primary/20 rotate-1"></div>
+            <div className="relative bg-gradient-to-r from-primary/10 to-accent/10 border-2 border-primary/30 px-6 py-3 rounded-md font-mono font-bold text-sm -rotate-0.5">
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                <span className="text-card-foreground">Your digital workspace awaits</span>
+                <Sparkles className="h-4 w-4 text-primary animate-spin" style={{ animationDuration: '3s' }} />
+              </div>
+            </div>
           </div>
 
-          <h1 className="neubrutalist-text text-4xl md:text-5xl lg:text-7xl mb-8 text-balance animate-in fade-in slide-in-from-bottom duration-700 transform rotate-[1deg]">
-            Ledger – Your Ultimate Notes Manager
+          <h1 className="font-mono font-bold text-balance text-4xl md:text-5xl lg:text-6xl mb-8 text-center mt-4"
+              style={{ textShadow: '1.5px 1.5px 0px currentColor' }}>
+            <span className="text-primary">
+              Ledger
+            </span>
+            <span className="text-card-foreground/90 ml-4">
+               – Your Ultimate Notes Manager
+            </span>
           </h1>
 
           <p className="font-mono font-bold text-lg lg:text-xl text-card-foreground mb-8 max-w-3xl mx-auto text-balance leading-relaxed animate-in fade-in slide-in-from-bottom duration-700 delay-200 transform rotate-[-0.5deg]">
@@ -52,20 +64,20 @@ export default function HomePage() {
             notes application designed for modern productivity.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-8 justify-center animate-in fade-in slide-in-from-bottom duration-700 delay-300">
-            <Button asChild size="lg" variant="brutalist" className="text-lg px-10 py-4 gap-3">
-              <Link href="/signup">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center animate-in fade-in slide-in-from-bottom duration-700 delay-300">
+            <Button asChild size="lg" variant="brutalist" className="text-base sm:text-lg px-6 sm:px-10 py-3 sm:py-4 gap-2 sm:gap-3 w-full sm:w-auto">
+              <Link href="/signup" className="block text-center">
                 Get Started Free
-                <ArrowRight className="h-6 w-6" />
+                <ArrowRight className="h-4 w-4 sm:h-6 sm:w-6" />
               </Link>
             </Button>
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="text-lg px-10 py-4 border-current border-4 bg-card font-mono font-bold tracking-wide"
+              className="text-base sm:text-lg px-6 sm:px-10 py-3 sm:py-4 border-current border-4 bg-card font-mono font-bold tracking-wide w-full sm:w-auto"
             >
-              <Link href="/login">Sign In</Link>
+              <Link href="/login" className="block text-center">Sign In</Link>
             </Button>
           </div>
         </div>
@@ -125,10 +137,10 @@ export default function HomePage() {
               <p className="font-mono font-bold text-card-foreground mb-10 text-balance text-lg">
                 Join thousands of users who have transformed their productivity with Ledger.
               </p>
-              <Button asChild size="lg" variant="brutalist" className="gap-4 px-16 py-5 text-xl shadow-[10px_10px_0px_0px_hsl(var(--primary)/0.4)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)]">
-                <Link href="/signup">
+              <Button asChild size="lg" variant="brutalist" className="gap-2 sm:gap-4 px-8 sm:px-16 py-3 sm:py-5 text-lg sm:text-xl shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] sm:shadow-[10px_10px_0px_0px_hsl(var(--primary)/0.4)] hover:shadow-[3px_3px_0px_0px_hsl(var(--primary)/0.4)] sm:hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] w-full sm:w-auto">
+                <Link href="/signup" className="block text-center">
                   Start Your Journey
-                  <ArrowRight className="h-7 w-7" />
+                  <ArrowRight className="h-5 w-5 sm:h-7 sm:w-7" />
                 </Link>
               </Button>
             </div>
@@ -138,3 +150,4 @@ export default function HomePage() {
     </div>
   )
 }
+

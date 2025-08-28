@@ -75,7 +75,7 @@ export function SignupForm() {
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 mb-4">
           {error && (
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>

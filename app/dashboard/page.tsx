@@ -30,7 +30,7 @@ function DashboardContent() {
   return (
     <div className="min-h-screen bg-background">
       <NotesHeader onCreateNote={handleCreateNote} />
-      <main className="container mx-auto px-8 py-12 lg:py-16" style={{ transform: "rotate(-0.25deg)" }}>
+      <main className="container mx-auto px-8 py-16 lg:py-24">
         <NotesGrid onEditNote={handleEditNote} />
       </main>
       <NoteForm isOpen={isFormOpen} onClose={handleCloseForm} note={editingNote} />
