@@ -6,9 +6,12 @@ import "./globals.css"
 import { AuthProvider } from "@/contexts/auth-context"
 
 export const metadata: Metadata = {
-  title: "Notes Manager",
+  title: "Ledger",
   description: "Your thoughts, organized beautifully",
   generator: "v0.app",
+  icons: {
+    icon: "/notes-taking-img.png",
+  },
 }
 
 export default function RootLayout({

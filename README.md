@@ -1,10 +1,10 @@
-# Notes Manager
+# Ledger
 
 A full-stack note-taking application built with Next.js, TypeScript, and modern web technologies.
 
 ## Description
 
-Notes Manager is a responsive web application that allows users to create, manage, and organize their notes. It features user authentication, a clean dashboard interface, and a RESTful API for note management operations.
+Ledger is a responsive web application that allows users to create, manage, and organize their notes. It features user authentication, a clean dashboard interface, and a RESTful API for note management operations.
 
 ## Features
 
@@ -22,7 +22,8 @@ Notes Manager is a responsive web application that allows users to create, manag
 - **Styling**: Tailwind CSS
 - **Backend**: Next.js API Routes
 - **Authentication**: JWT tokens
-- **Database**: MySQL 
+- **Database**: MySQL
+- **UI Components**: Radix UI
 - **Development**: pnpm, ESLint, PostCSS
 
 ## Table of Contents
@@ -40,7 +41,7 @@ Notes Manager is a responsive web application that allows users to create, manag
 1. Clone the repository:
    ```bash
    git clone https://github.com/YashPalav-26/Ledger.git
-   cd notes-manager
+   cd ledger
    ```
 
 2. Install dependencies:
@@ -62,7 +63,6 @@ Create a `.env.local` file in the root directory with the following variables:
 ```env
 # Database Configuration
 DB_HOST=your_database_host
-DB_PORT=5432
 DB_USER=your_database_user
 DB_PASSWORD=your_database_password
 DB_NAME=notes_manager
@@ -205,5 +205,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Next.js](https://nextjs.org/) - React framework
 - [Tailwind CSS](https://tailwindcss.com/) - CSS framework
-- [shadcn/ui](https://ui.shadcn.com/) - UI components
 - [React](https://reactjs.org/) - UI library
