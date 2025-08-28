@@ -39,7 +39,7 @@ Notes Manager is a responsive web application that allows users to create, manag
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/notes-manager.git
+   git clone https://github.com/YashPalav-26/Ledger.git
    cd notes-manager
    ```
 
@@ -201,8 +201,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
+- GitHub: [@yourusername](https://github.com/YashPalav-26)
+- Email: yashpalav48@gmail.com
 
 ## Acknowledgements
 
