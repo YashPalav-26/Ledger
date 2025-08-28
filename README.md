@@ -19,10 +19,10 @@ Notes Manager is a responsive web application that allows users to create, manag
 ## Tech Stack
 
 - **Frontend**: Next.js 15, React 19, TypeScript
-- **Styling**: Tailwind CSS, shadcn/ui components
+- **Styling**: Tailwind CSS
 - **Backend**: Next.js API Routes
 - **Authentication**: JWT tokens
-- **Database**: PostgreSQL (based on SQL scripts)
+- **Database**: MySQL 
 - **Development**: pnpm, ESLint, PostCSS
 
 ## Table of Contents
