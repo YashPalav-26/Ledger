@@ -23,7 +23,7 @@ export default function HomePage() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted/30">
         <div className="text-center">
           <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground animate-pulse">Loading Notes Manager...</p>
+          <p className="text-muted-foreground animate-pulse">Loading Ledger...</p>
         </div>
       </div>
     )
@@ -44,7 +44,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-primary mb-6 text-balance animate-in fade-in slide-in-from-bottom duration-700">
-            Notes Manager
+            Ledger – Your Ultimate Notes Manager
           </h1>
 
           <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto text-balance leading-relaxed animate-in fade-in slide-in-from-bottom duration-700 delay-200">
@@ -115,7 +115,7 @@ export default function HomePage() {
           <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 lg:p-12 max-w-2xl mx-auto">
             <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-balance">Ready to organize your thoughts?</h2>
             <p className="text-muted-foreground mb-6 text-balance">
-              Join thousands of users who have transformed their productivity with Notes Manager.
+              Join thousands of users who have transformed their productivity with Ledger.
             </p>
             <Button asChild size="lg" className="gap-2 shadow-lg hover:shadow-xl transition-shadow">
               <Link href="/signup">

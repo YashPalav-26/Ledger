@@ -6,7 +6,7 @@ import "./globals.css"
 import { AuthProvider } from "@/contexts/auth-context"
 
 export const metadata: Metadata = {
-  title: "Ledger",
+  title: "Ledger – Your Ultimate Notes Manager",
   description: "Your thoughts, organized beautifully",
   generator: "v0.app",
   icons: {

@@ -34,7 +34,7 @@ export function NotesHeader({ onCreateNote }: NotesHeaderProps) {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
           <div className="flex items-center gap-4">
             <div className="flex-1">
-              <h1 className="text-2xl lg:text-3xl font-bold text-primary mb-1">Notes Manager</h1>
+              <h1 className="text-2xl lg:text-3xl font-bold text-primary mb-1">Ledger</h1>
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <User className="h-4 w-4" />
