@@ -70,9 +70,6 @@ DB_NAME=notes_manager
 # JWT Configuration
 JWT_SECRET=your_jwt_secret_key_here
 
-# Next.js Configuration
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your_nextauth_secret
 ```
 
 ## Development
@@ -201,7 +198,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-- GitHub: [@yourusername](https://github.com/YashPalav-26)
+- GitHub: [YashPalav-26](https://github.com/YashPalav-26)
 - Email: yashpalav48@gmail.com
 
 ## Acknowledgements
