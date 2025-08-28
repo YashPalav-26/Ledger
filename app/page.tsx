@@ -34,36 +34,36 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-primary/5">
-      <div className="container mx-auto px-4 py-12 lg:py-20">
+    <div className="min-h-screen bg-background">
+            <div className="container mx-auto px-4 py-12 lg:py-20">
         {/* Hero Section */}
         <div className="text-center mb-16 lg:mb-24">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6 animate-in fade-in slide-in-from-top duration-500">
-            <Sparkles className="h-4 w-4" />
+          <div className="inline-flex items-center gap-3 bg-card border-current border-4 px-6 py-3 rounded-none font-mono font-bold text-sm tracking-widest uppercase animate-in fade-in slide-in-from-top duration-500 transform rotate-[-2deg]">
+            <Sparkles className="h-5 w-5" />
             Your digital workspace awaits
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-primary mb-6 text-balance animate-in fade-in slide-in-from-bottom duration-700">
+          <h1 className="neubrutalist-text text-4xl md:text-5xl lg:text-7xl mb-8 text-balance animate-in fade-in slide-in-from-bottom duration-700 transform rotate-[1deg]">
             Ledger – Your Ultimate Notes Manager
           </h1>
 
-          <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto text-balance leading-relaxed animate-in fade-in slide-in-from-bottom duration-700 delay-200">
+          <p className="font-mono font-bold text-lg lg:text-xl text-card-foreground mb-8 max-w-3xl mx-auto text-balance leading-relaxed animate-in fade-in slide-in-from-bottom duration-700 delay-200 transform rotate-[-0.5deg]">
             Transform the way you capture, organize, and access your thoughts. A beautiful, secure, and lightning-fast
             notes application designed for modern productivity.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom duration-700 delay-300">
-            <Button asChild size="lg" className="text-lg px-8 h-12 gap-2 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="flex flex-col sm:flex-row gap-8 justify-center animate-in fade-in slide-in-from-bottom duration-700 delay-300">
+            <Button asChild size="lg" variant="brutalist" className="text-lg px-10 py-4 gap-3">
               <Link href="/signup">
                 Get Started Free
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-6 w-6" />
               </Link>
             </Button>
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="text-lg px-8 h-12 bg-background/50 backdrop-blur-sm border-border/50 hover:bg-background"
+              className="text-lg px-10 py-4 border-current border-4 bg-card font-mono font-bold tracking-wide"
             >
               <Link href="/login">Sign In</Link>
             </Button>
@@ -71,7 +71,7 @@ export default function HomePage() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-10 lg:gap-12 max-w-6xl mx-auto">
           {[
             {
               icon: FileText,
@@ -79,6 +79,7 @@ export default function HomePage() {
               description:
                 "Keep all your thoughts, ideas, and important information organized in one place with smart categories, powerful search, and intuitive tagging.",
               delay: "delay-500",
+              rotation: "-1deg",
             },
             {
               icon: Shield,
@@ -86,6 +87,7 @@ export default function HomePage() {
               description:
                 "Your notes are protected with industry-standard encryption and security. Your thoughts remain private and accessible only to you.",
               delay: "delay-700",
+              rotation: "0.5deg",
             },
             {
               icon: Zap,
@@ -93,36 +95,43 @@ export default function HomePage() {
               description:
                 "Lightning-fast performance across all devices. Access your notes instantly, anywhere, anytime with our responsive and intuitive design.",
               delay: "delay-900",
+              rotation: "-0.75deg",
             },
           ].map((feature, index) => (
-            <Card
+            <div
               key={index}
-              className={`text-center group hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-2 border-border/50 bg-card/50 backdrop-blur-sm animate-in fade-in slide-in-from-bottom duration-700 ${feature.delay}`}
+              className={`animate-in fade-in slide-in-from-bottom duration-700 ${feature.delay}`}
+              style={{ transform: `rotate(${feature.rotation})` }}
             >
-              <CardHeader className="pb-4">
-                <feature.icon className="h-12 w-12 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                <CardTitle className="text-xl group-hover:text-primary transition-colors">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base leading-relaxed">{feature.description}</CardDescription>
-              </CardContent>
-            </Card>
+              <Card className="text-center group hover:transform hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_currentColor] hover:rotate-0 transition-all duration-300 border-current">
+                <CardHeader className="pb-6 pt-8">
+                  <feature.icon className="h-14 w-14 text-card-foreground mx-auto mb-6 group-hover:rotate-12 transition-transform duration-300" />
+                  <CardTitle className="text-xl font-mono font-bold">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="px-6 pb-8">
+                  <CardDescription className="text-base leading-relaxed font-mono font-bold text-card-foreground/80">{feature.description}</CardDescription>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16 lg:mt-24 animate-in fade-in slide-in-from-bottom duration-700 delay-1000">
-          <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 lg:p-12 max-w-2xl mx-auto">
-            <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-balance">Ready to organize your thoughts?</h2>
-            <p className="text-muted-foreground mb-6 text-balance">
-              Join thousands of users who have transformed their productivity with Ledger.
-            </p>
-            <Button asChild size="lg" className="gap-2 shadow-lg hover:shadow-xl transition-shadow">
-              <Link href="/signup">
-                Start Your Journey
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-            </Button>
+        <div className="text-center mt-20 lg:mt-28" style={{ transform: "rotate(-0.25deg)" }}>
+          <div className="neubrutalist-border neubrutalist-shadow px-16 py-20 max-w-2xl mx-auto relative" style={{ transform: "rotate(0.5deg)" }}>
+            <div className="absolute -inset-1 bg-accent opacity-10 rounded-sm"></div>
+            <div className="relative z-10">
+              <h2 className="neubrutalist-text text-3xl lg:text-4xl mb-8 text-balance">Ready to organize your thoughts?</h2>
+              <p className="font-mono font-bold text-card-foreground mb-10 text-balance text-lg">
+                Join thousands of users who have transformed their productivity with Ledger.
+              </p>
+              <Button asChild size="lg" variant="brutalist" className="gap-4 px-16 py-5 text-xl shadow-[10px_10px_0px_0px_hsl(var(--primary)/0.4)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)]">
+                <Link href="/signup">
+                  Start Your Journey
+                  <ArrowRight className="h-7 w-7" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

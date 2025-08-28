@@ -39,10 +39,10 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto shadow-lg">
-      <CardHeader className="space-y-1 text-center">
-        <CardTitle className="text-2xl font-semibold text-balance">Welcome back</CardTitle>
-        <CardDescription className="text-muted-foreground">Enter your credentials to access your notes</CardDescription>
+    <Card className="w-full max-w-md mx-auto neubrutalist-shadow" style={{ transform: "rotate(0.25deg)" }}>
+      <CardHeader className="space-y-4 text-center pt-12 pb-8">
+        <CardTitle className="text-3xl font-mono font-bold tracking-tight">Welcome back</CardTitle>
+        <CardDescription className="font-mono font-bold text-card-foreground/80">Enter your credentials to access your notes</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
@@ -87,8 +87,8 @@ export function LoginForm() {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
-          <Button type="submit" className="w-full h-11" disabled={isLoading}>
-            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          <Button type="submit" variant="brutalist" className="w-full h-14 text-lg font-mono font-bold" disabled={isLoading}>
+            {isLoading && <Loader2 className="mr-3 h-5 w-5 animate-spin" />}
             Sign In
           </Button>
           <div className="text-center space-y-2">

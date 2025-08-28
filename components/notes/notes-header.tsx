@@ -29,7 +29,7 @@ export function NotesHeader({ onCreateNote }: NotesHeaderProps) {
   const favoriteNotes = notes.filter((note) => note.isFavorite).length
 
   return (
-    <div className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-10">
+    <div className="neubrutalist-border neubrutalist-shadow pattern-nuclear sticky top-0 z-10" style={{ transform: "rotate(0.75deg)" }}>
       <div className="container mx-auto px-4 py-4 lg:py-6">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
           <div className="flex items-center gap-4">
@@ -58,10 +58,9 @@ export function NotesHeader({ onCreateNote }: NotesHeaderProps) {
             </div>
           </div>
           <div className="flex items-center gap-2 lg:gap-3">
-            <Button onClick={onCreateNote} className="gap-2 flex-1 sm:flex-none">
-              <Plus className="h-4 w-4" />
-              <span className="hidden sm:inline">New Note</span>
-              <span className="sm:hidden">New</span>
+            <Button onClick={onCreateNote} variant="brutalist" className="gap-3 flex-1 sm:flex-none px-8 py-3">
+              <Plus className="h-5 w-5" />
+              <span className="font-mono font-bold tracking-wide">New Note</span>
             </Button>
             <Button variant="outline" onClick={logout} className="gap-2 bg-transparent">
               <LogOut className="h-4 w-4" />
