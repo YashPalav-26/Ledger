@@ -67,10 +67,10 @@ export function SignupForm() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto shadow-lg">
-      <CardHeader className="space-y-1 text-center">
-        <CardTitle className="text-2xl font-semibold text-balance">Create your account</CardTitle>
-        <CardDescription className="text-muted-foreground">
+    <Card className="w-full max-w-md mx-auto neubrutalist-shadow">
+      <CardHeader className="space-y-4 text-center pt-12 pb-8">
+        <CardTitle className="text-3xl font-mono font-bold tracking-tight">Create your account</CardTitle>
+        <CardDescription className="font-mono font-bold text-card-foreground/80">
           Start organizing your thoughts with our notes manager
         </CardDescription>
       </CardHeader>
@@ -148,7 +148,7 @@ export function SignupForm() {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
-          <Button type="submit" className="w-full h-11" disabled={isLoading}>
+          <Button type="submit" variant="brutalist" className="w-full h-14 text-lg font-mono font-bold" disabled={isLoading}>
             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Create Account
           </Button>

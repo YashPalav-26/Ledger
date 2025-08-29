@@ -39,7 +39,7 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto neubrutalist-shadow" style={{ transform: "rotate(0.25deg)" }}>
+    <Card className="w-full max-w-md mx-auto neubrutalist-shadow">
       <CardHeader className="space-y-4 text-center pt-12 pb-8">
         <CardTitle className="text-3xl font-mono font-bold tracking-tight">Welcome back</CardTitle>
         <CardDescription className="font-mono font-bold text-card-foreground/80">Enter your credentials to access your notes</CardDescription>

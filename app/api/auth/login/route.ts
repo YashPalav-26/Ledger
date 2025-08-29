@@ -4,6 +4,19 @@ import { comparePassword, generateToken } from "@/lib/auth"
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if database environment variables are configured
+    if (!process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_NAME) {
+      console.error("Database configuration missing:", {
+        DB_HOST: !!process.env.DB_HOST,
+        DB_USER: !!process.env.DB_USER,
+        DB_NAME: !!process.env.DB_NAME,
+      })
+      return NextResponse.json(
+        { error: "Database configuration error. Please contact administrator." },
+        { status: 500 }
+      )
+    }
+
     const { email, password } = await request.json()
 
     // Validate input
@@ -42,7 +55,10 @@ export async function POST(request: NextRequest) {
       token,
     })
   } catch (error) {
-    console.error("Login error:", error)
+    console.error("Login error details:", {
+      error: error instanceof Error ? error.message : error,
+      stack: error instanceof Error ? error.stack : undefined,
+    })
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
