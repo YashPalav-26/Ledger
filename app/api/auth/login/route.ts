@@ -10,6 +10,12 @@ export async function POST(request: NextRequest) {
         DB_HOST: !!process.env.DB_HOST,
         DB_USER: !!process.env.DB_USER,
         DB_NAME: !!process.env.DB_NAME,
+        allEnvVars: {
+          DB_HOST: process.env.DB_HOST,
+          DB_USER: process.env.DB_USER,
+          DB_NAME: process.env.DB_NAME,
+          DB_PORT: process.env.DB_PORT,
+        }
       })
       return NextResponse.json(
         { error: "Database configuration error. Please contact administrator." },
@@ -17,7 +23,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { email, password } = await request.json()
+    // Log request details for debugging
+    console.log("Login attempt:", { timestamp: new Date().toISOString() })
+
+    const body = await request.json()
+    const { email, password } = body
+
+    console.log("Login request parsed:", {
+      hasEmail: !!email,
+      hasPassword: !!password,
+      emailLength: email?.length,
+    })
 
     // Validate input
     if (!email || !password) {
@@ -25,11 +41,18 @@ export async function POST(request: NextRequest) {
     }
 
     // Find user by email
+    console.log("Executing user lookup query for email:", email)
     const users = (await executeQuery("SELECT id, email, password, first_name, last_name FROM users WHERE email = ?", [
       email,
     ])) as any[]
 
+    console.log("Query result:", {
+      foundUsers: users.length,
+      userFields: users.length > 0 ? Object.keys(users[0]) : null
+    })
+
     if (users.length === 0) {
+      console.log("No user found with email:", email)
       return NextResponse.json({ error: "Invalid email or password" }, { status: 401 })
     }
 

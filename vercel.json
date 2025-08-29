@@ -1,0 +1,22 @@
+{
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 30
+    },
+    "app/api/auth/**/*.ts": {
+      "maxDuration": 30
+    },
+    "app/api/health/*.ts": {
+      "maxDuration": 20
+    }
+  },
+  "crons": [],
+  "env": {
+    "DB_HOST": "@db_host",
+    "DB_USER": "@db_user",
+    "DB_PASSWORD": "@db_password",
+    "DB_NAME": "@db_name",
+    "DB_PORT": "@db_port",
+    "JWT_SECRET": "@jwt_secret"
+  }
+}

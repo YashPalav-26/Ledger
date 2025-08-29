@@ -10,6 +10,12 @@ export async function POST(request: NextRequest) {
         DB_HOST: !!process.env.DB_HOST,
         DB_USER: !!process.env.DB_USER,
         DB_NAME: !!process.env.DB_NAME,
+        allEnvVars: {
+          DB_HOST: process.env.DB_HOST,
+          DB_USER: process.env.DB_USER,
+          DB_NAME: process.env.DB_NAME,
+          DB_PORT: process.env.DB_PORT,
+        }
       })
       return NextResponse.json(
         { error: "Database configuration error. Please contact administrator." },
@@ -17,7 +23,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { email, password, firstName, lastName } = await request.json()
+    // Log request details for debugging
+    console.log("Signup attempt:", { timestamp: new Date().toISOString() })
+
+    const body = await request.json()
+    const { email, password, firstName, lastName } = body
+
+    console.log("Signup request parsed:", {
+      hasEmail: !!email,
+      hasPassword: !!password,
+      hasFirstName: !!firstName,
+      hasLastName: !!lastName,
+    })
 
     // Validate input
     if (!email || !password || !firstName || !lastName) {
@@ -29,9 +46,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user already exists
+    console.log("Checking if user exists with email:", email)
     const existingUser = (await executeQuery("SELECT id FROM users WHERE email = ?", [email])) as any[]
 
+    console.log("Existing user check result:", { existingUsers: existingUser.length })
+
     if (existingUser.length > 0) {
+      console.log("User already exists with email:", email)
       return NextResponse.json({ error: "User with this email already exists" }, { status: 409 })
     }
 
