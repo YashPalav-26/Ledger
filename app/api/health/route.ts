@@ -33,15 +33,36 @@ export async function GET() {
       }, { status: 500 })
     }
 
-    const dbConnected = await testDatabaseConnection()
+    const dbConnectionResult = await testDatabaseConnection()
 
-    if (!dbConnected) {
-      return NextResponse.json({
-        status: "error",
-        message: "Database connection failed",
-        envVars: envStatus,
-        timestamp: new Date().toISOString()
-      }, { status: 500 })
+    if (!dbConnectionResult) {
+      // Get detailed error by trying the connection manually
+      try {
+        const { getDbConnection } = await import('@/lib/db')
+        const connection = getDbConnection()
+        await connection.execute("SELECT 1 as test")
+
+        return NextResponse.json({
+          status: "error",
+          message: "Unexpected connection failure",
+          envVars: envStatus,
+          timestamp: new Date().toISOString()
+        }, { status: 500 })
+
+      } catch (detailedError: any) {
+        return NextResponse.json({
+          status: "error",
+          message: "Database connection failed with details",
+          error: detailedError?.message || "Unknown error",
+          code: detailedError?.code || "No code",
+          errno: detailedError?.errno || "No errno",
+          envVars: envStatus,
+          host: process.env.DB_HOST,
+          database: process.env.DB_NAME,
+          port: process.env.DB_PORT,
+          timestamp: new Date().toISOString()
+        }, { status: 500 })
+      }
     }
 
     return NextResponse.json({
