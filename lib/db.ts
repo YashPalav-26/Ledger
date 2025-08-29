@@ -14,8 +14,7 @@ const poolConfig = {
   waitForConnections: true,
   connectionLimit: 5,
   queueLimit: 0,
-  acquireTimeoutMillis: 30000,
-  timeout: 60000,
+  acquireTimeout: 30000, // 30 seconds
 }
 
 let pool: mysql.Pool | null = null
@@ -35,7 +34,7 @@ export function getDbConnection() {
       hasPassword: !!poolConfig.password,
       connectionLimit: poolConfig.connectionLimit,
       queueLimit: poolConfig.queueLimit,
-      acquireTimeoutMillis: poolConfig.acquireTimeoutMillis,
+      acquireTimeout: poolConfig.acquireTimeout,
       connectTimeout: poolConfig.connectTimeout,
       waitForConnections: poolConfig.waitForConnections
     })

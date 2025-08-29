@@ -1,13 +1,13 @@
 {
   "functions": {
     "app/api/**/*.ts": {
-      "maxDuration": 10
+      "maxDuration": 8
     },
     "app/api/auth/**/*.ts": {
       "maxDuration": 8
     },
     "app/api/health/*.ts": {
-      "maxDuration": 5
+      "maxDuration": 8
     }
   },
   "crons": []
