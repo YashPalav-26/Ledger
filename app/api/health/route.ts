@@ -3,8 +3,6 @@ import { testDatabaseConnection } from "@/lib/db"
 
 export async function GET() {
   try {
-    console.log("Health check initiated")
-
     // Check environment variables (without exposing sensitive info)
     const envStatus = {
       DB_HOST: !!process.env.DB_HOST,
@@ -15,8 +13,6 @@ export async function GET() {
       JWT_SECRET: !!process.env.JWT_SECRET,
     }
 
-    console.log("Environment variables status:", envStatus)
-
     // Test database connection if all env vars are present
     const hasAllRequiredEnvVars = Object.values(envStatus).every(Boolean) &&
                                   process.env.DB_HOST !== "" &&
@@ -24,7 +20,6 @@ export async function GET() {
                                   process.env.DB_NAME !== ""
 
     if (!hasAllRequiredEnvVars) {
-      console.error("Missing required environment variables")
       return NextResponse.json({
         status: "error",
         message: "Missing required environment variables",
@@ -36,33 +31,12 @@ export async function GET() {
     const dbConnectionResult = await testDatabaseConnection()
 
     if (!dbConnectionResult) {
-      // Get detailed error by trying the connection manually
-      try {
-        const { getDbConnection } = await import('@/lib/db')
-        const connection = getDbConnection()
-        await connection.execute("SELECT 1 as test")
-
-        return NextResponse.json({
-          status: "error",
-          message: "Unexpected connection failure",
-          envVars: envStatus,
-          timestamp: new Date().toISOString()
-        }, { status: 500 })
-
-      } catch (detailedError: any) {
-        return NextResponse.json({
-          status: "error",
-          message: "Database connection failed with details",
-          error: detailedError?.message || "Unknown error",
-          code: detailedError?.code || "No code",
-          errno: detailedError?.errno || "No errno",
-          envVars: envStatus,
-          host: process.env.DB_HOST,
-          database: process.env.DB_NAME,
-          port: process.env.DB_PORT,
-          timestamp: new Date().toISOString()
-        }, { status: 500 })
-      }
+      return NextResponse.json({
+        status: "error",
+        message: "Database connection failed",
+        envVars: envStatus,
+        timestamp: new Date().toISOString()
+      }, { status: 500 })
     }
 
     return NextResponse.json({
@@ -73,11 +47,6 @@ export async function GET() {
     })
 
   } catch (error) {
-    console.error("Health check failed:", {
-      error: error instanceof Error ? error.message : error,
-      stack: error instanceof Error ? error.stack : undefined
-    })
-
     return NextResponse.json({
       status: "error",
       message: "Health check failed",

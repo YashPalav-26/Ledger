@@ -29,7 +29,7 @@ export function NotesHeader({ onCreateNote }: NotesHeaderProps) {
   const favoriteNotes = notes.filter((note) => note.isFavorite).length
 
   return (
-        <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur-sm">
+    <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur-sm" style={{ transform: 'none' }}>
       <div className="container mx-auto px-4 py-4 lg:py-6">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-6">
           <div className="flex flex-col gap-2">

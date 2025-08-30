@@ -32,7 +32,6 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
       },
     })
   } catch (error) {
-    console.error("Get note error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
@@ -87,7 +86,6 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       },
     })
   } catch (error) {
-    console.error("Update note error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
@@ -117,7 +115,6 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
       message: "Note deleted successfully",
     })
   } catch (error) {
-    console.error("Delete note error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

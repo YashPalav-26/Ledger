@@ -26,27 +26,7 @@ export function getDbConnection() {
       throw new Error("Missing required database environment variables")
     }
 
-    console.log("Creating database pool with config:", {
-      host: poolConfig.host,
-      user: poolConfig.user,
-      database: poolConfig.database,
-      port: poolConfig.port,
-      hasPassword: !!poolConfig.password,
-      connectionLimit: poolConfig.connectionLimit,
-      queueLimit: poolConfig.queueLimit,
-      acquireTimeout: poolConfig.acquireTimeout,
-      connectTimeout: poolConfig.connectTimeout,
-      waitForConnections: poolConfig.waitForConnections
-    })
-
     pool = mysql.createPool(poolConfig)
-
-    // Log pool events in production for debugging
-    if (process.env.NODE_ENV === 'production') {
-      pool.on('enqueue', () => {
-        console.log('Waiting for available database connection')
-      })
-    }
   }
   return pool
 }
@@ -57,12 +37,6 @@ export async function executeQuery(query: string, params: any[] = []) {
     const [results] = await connection.execute(query, params)
     return results
   } catch (error) {
-    console.error("Database query error:", {
-      query: query.substring(0, 100) + (query.length > 100 ? '...' : ''),
-      error: error instanceof Error ? error.message : error,
-      code: error instanceof Error && 'code' in error ? error.code : undefined,
-      errno: error instanceof Error && 'errno' in error ? error.errno : undefined,
-    })
     // Re-throw with more context
     if (error instanceof Error) {
       throw new Error(`Database query failed: ${error.message}`)
@@ -73,24 +47,10 @@ export async function executeQuery(query: string, params: any[] = []) {
 
 export async function testDatabaseConnection() {
   try {
-    console.log("Testing database connection with config:", {
-      host: poolConfig.host,
-      user: poolConfig.user,
-      database: poolConfig.database,
-      port: poolConfig.port,
-      hasPassword: !!poolConfig.password,
-    })
-
     const connection = getDbConnection()
     await connection.execute("SELECT 1 as test")
-    console.log("Database connection successful")
     return true
   } catch (error) {
-    console.error("Database connection test failed:", {
-      error: error instanceof Error ? error.message : error,
-      code: error instanceof Error && 'code' in error ? error.code : undefined,
-      errno: error instanceof Error && 'errno' in error ? error.errno : undefined,
-    })
     return false
   }
 }

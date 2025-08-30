@@ -13,8 +13,10 @@ interface ErrorProps {
 
 export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
-    // Log the error to an error reporting service
-    console.error("Application error:", error)
+    // Log the error to an error reporting service (only in development)
+    if (process.env.NODE_ENV === "development") {
+      console.error("Application error:", error)
+    }
   }, [error])
 
   return (

@@ -6,34 +6,19 @@ export async function POST(request: NextRequest) {
   try {
     // Check if database environment variables are configured
     if (!process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_NAME) {
-      console.error("Database configuration missing:", {
-        DB_HOST: !!process.env.DB_HOST,
-        DB_USER: !!process.env.DB_USER,
-        DB_NAME: !!process.env.DB_NAME,
-        allEnvVars: {
-          DB_HOST: process.env.DB_HOST,
-          DB_USER: process.env.DB_USER,
-          DB_NAME: process.env.DB_NAME,
-          DB_PORT: process.env.DB_PORT,
-        }
-      })
       return NextResponse.json(
         { error: "Database configuration error. Please contact administrator." },
         { status: 500 }
       )
     }
 
-    // Log request details for debugging
-    console.log("Login attempt:", { timestamp: new Date().toISOString() })
-
-    const body = await request.json()
+    let body
+    try {
+      body = await request.json()
+    } catch (parseError) {
+      return NextResponse.json({ error: "Invalid request body" }, { status: 400 })
+    }
     const { email, password } = body
-
-    console.log("Login request parsed:", {
-      hasEmail: !!email,
-      hasPassword: !!password,
-      emailLength: email?.length,
-    })
 
     // Validate input
     if (!email || !password) {
@@ -41,31 +26,38 @@ export async function POST(request: NextRequest) {
     }
 
     // Find user by email
-    console.log("Executing user lookup query for email:", email)
-    const users = (await executeQuery("SELECT id, email, password, first_name, last_name FROM users WHERE email = ?", [
-      email,
-    ])) as any[]
+    let users
+    try {
+      users = (await executeQuery("SELECT id, email, password, first_name, last_name FROM users WHERE email = ?", [
+        email,
+      ])) as any[]
+    } catch (dbError) {
+      throw dbError
+    }
 
-    console.log("Query result:", {
-      foundUsers: users.length,
-      userFields: users.length > 0 ? Object.keys(users[0]) : null
-    })
-
-    if (users.length === 0) {
-      console.log("No user found with email:", email)
+    if (!users || users.length === 0) {
       return NextResponse.json({ error: "Invalid email or password" }, { status: 401 })
     }
 
     const user = users[0]
 
     // Verify password
-    const isValidPassword = await comparePassword(password, user.password)
-    if (!isValidPassword) {
-      return NextResponse.json({ error: "Invalid email or password" }, { status: 401 })
+    try {
+      const isValidPassword = await comparePassword(password, user.password)
+      if (!isValidPassword) {
+        return NextResponse.json({ error: "Invalid email or password" }, { status: 401 })
+      }
+    } catch (passwordError) {
+      throw passwordError
     }
 
     // Generate token
-    const token = generateToken(user)
+    let token
+    try {
+      token = generateToken(user)
+    } catch (tokenError) {
+      throw tokenError
+    }
 
     return NextResponse.json({
       message: "Login successful",
@@ -78,10 +70,6 @@ export async function POST(request: NextRequest) {
       token,
     })
   } catch (error) {
-    console.error("Login error details:", {
-      error: error instanceof Error ? error.message : error,
-      stack: error instanceof Error ? error.stack : undefined,
-    })
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
